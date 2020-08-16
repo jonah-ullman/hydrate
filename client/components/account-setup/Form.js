@@ -1,5 +1,4 @@
 import React, {useState} from 'react'
-import {Age} from '.'
 
 export default function Form() {
   const [age, setAge] = useState(0)
@@ -9,9 +8,5 @@ export default function Form() {
   const [textAlerts, setTextAlerts] = useState(false)
   const [status, setStatus] = useState('age')
 
-  return (
-    <div>
-      {status === 'age' && <Age setAge={setAge} setStatus={setStatus} />}
-    </div>
-  )
+  return <div></div>
 }
