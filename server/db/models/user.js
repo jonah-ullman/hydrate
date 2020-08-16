@@ -31,21 +31,15 @@ const User = db.define('user', {
     type: Sequelize.INTEGER,
   },
   activity: {
-    type: Sequelize.ENUM,
-    values: ['low', 'medium', 'high'],
-  },
-  age: {
     type: Sequelize.INTEGER,
     validate: {
       min: 0,
-      max: 120,
+      max: 1440,
     },
   },
   waterTotal: {
     type: Sequelize.VIRTUAL,
-    get() {
-      
-    },
+    get() {},
   },
   phone: {
     type: Sequelize.INTEGER,
