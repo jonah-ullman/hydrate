@@ -10,7 +10,7 @@ router.get('/', async (req, res, next) => {
         id: -1,
       },
     })
-    res.send(user)
+    req.login(user, (err) => (err ? next(err) : res.json(user)))
   } catch (error) {
     next(error)
   }
