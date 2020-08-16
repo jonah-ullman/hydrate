@@ -36,9 +36,28 @@ const User = db.define('user', {
   },
   age: {
     type: Sequelize.INTEGER,
+    validate: {
+      min: 0,
+      max: 120,
+    },
+  },
+  waterTotal: {
+    type: Sequelize.VIRTUAL,
+    get() {
+      
+    },
   },
   phone: {
     type: Sequelize.INTEGER,
+  },
+  texts: {
+    type: Sequelize.BOOLEAN,
+  },
+  textStart: {
+    type: Sequelize.TIME,
+  },
+  textEnd: {
+    type: Sequelize.TIME,
   },
 })
 
