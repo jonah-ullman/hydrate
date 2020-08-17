@@ -34,6 +34,10 @@ const User = db.define('user', {
   textEnd: {
     type: Sequelize.TIME,
   },
+  hasProfile: {
+    type: Sequelize.BOOLEAN,
+    defaultValue: false,
+  },
 })
 
 module.exports = User
