@@ -7,7 +7,6 @@ function Homepage(props) {
   const testLogin = async () => {
     const {data: user} = await Axios.get('/auth/test')
     setUser(user)
-    props.history.push('/hydrate')
   }
 
   return (
