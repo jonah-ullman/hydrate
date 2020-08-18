@@ -16,9 +16,10 @@ export default function Form(props) {
   const handleSubmit = async (event) => {
     event.preventDefault()
     const profile = {weight, activity, phone, textAlerts, textStart, textEnd}
-    const updatedUser = await Axios.put('/api/users', profile)
-    setUser(updatedUser)
-    props.history.push('/hydrate')
+    console.log(profile)
+    // const updatedUser = await Axios.put('/api/users', profile)
+    // setUser(updatedUser)
+    // props.history.push('/hydrate')
   }
 
   return (
@@ -35,7 +36,6 @@ export default function Form(props) {
           setTextAlerts={setTextAlerts}
           setTextStart={setTextStart}
           setTextEnd={setTextEnd}
-          setStatus={setStatus}
           handleSubmit={handleSubmit}
         />
       )}

@@ -13,7 +13,7 @@ export default function Activity(props) {
         <input
           type="text"
           placeholder="#"
-          onChange={(event) => props.set(event.target.value)}
+          onChange={(event) => props.setActivity(event.target.value)}
         />
       </form>
     </div>
