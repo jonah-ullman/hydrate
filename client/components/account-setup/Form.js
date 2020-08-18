@@ -44,7 +44,15 @@ export default function Form(props) {
   const [status, setStatus] = useState(WEIGHT)
   const {setUser} = useContext(UserContext)
 
-  const profile = {weight, activity, phone, textAlerts, textStart, textEnd}
+  const profile = {
+    weight,
+    activity,
+    phone,
+    textAlerts,
+    textStart,
+    textEnd,
+    hasProfile: true,
+  }
 
   const handleSubmit = async (event) => {
     event.preventDefault()
