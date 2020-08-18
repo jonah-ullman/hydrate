@@ -23,10 +23,11 @@ const User = db.define('user', {
     },
   },
   phone: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.STRING,
   },
-  texts: {
+  textAlerts: {
     type: Sequelize.BOOLEAN,
+    defaultValue: false,
   },
   textStart: {
     type: Sequelize.TIME,

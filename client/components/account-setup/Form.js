@@ -48,10 +48,10 @@ export default function Form(props) {
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    console.log(profile)
-    // const updatedUser = await Axios.put('/api/users', profile)
-    // setUser(updatedUser)
-    // props.history.push('/hydrate')
+    const response = await Axios.put('/api/users', profile)
+    const updatedUser = response.data
+    setUser(updatedUser)
+    props.history.push('/hydrate')
   }
 
   return (
