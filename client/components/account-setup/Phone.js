@@ -1,19 +1,19 @@
 import React from 'react'
 
-export default function Weight(props) {
+export default function Phone(props) {
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.setStatus()
+    props.setStatus('activity')
   }
 
   return (
     <div>
-      <div>Enter your weight in pounds</div>
+      <div>Enter your phone number</div>
       <form onSubmit={handleSubmit}>
         <input
           type="text"
-          placeholder="lb"
-          onChange={(event) => props.setWeight(event.target.value)}
+          placeholder="xxx-xxx-xxxx"
+          onChange={(event) => props.setPhone(event.target.value)}
         />
       </form>
     </div>

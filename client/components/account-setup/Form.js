@@ -1,7 +1,38 @@
 import React, {useState, useContext} from 'react'
-import {Activity, Weight, Texts} from '.'
+import {
+  Activity,
+  Weight,
+  Texts,
+  Phone,
+  TimeSelect,
+  Input,
+  Confirmation,
+} from '.'
 import Axios from 'axios'
 import {UserContext} from '../../context/user'
+
+const WEIGHT = 'weight'
+const WEIGHT_PLACEHOLDER = '#'
+const WEIGHT_LABEL = 'Enter your weight in pounds:'
+
+const ACTIVITY = 'activity'
+const ACTIVITY_PLACEHOLDER = '#'
+const ACTIVITY_LABEL =
+  'How much do you exercise per day on average, in minutes?'
+
+const PHONE = 'phone'
+const PHONE_PLACEHOLDER = 'xxx-xxx-xxxx'
+const PHONE_LABEL = 'Enter your phone number:'
+
+const TEXTALERTS = 'textAlerts'
+
+const TEXTSTART = 'textStart'
+const TEXTSTART_LABEL = 'When would you like to start receiving texts?'
+
+const TEXTEND = 'textEnd'
+const TEXTEND_LABEL = 'When would you like to stop receiving texts?'
+
+const CONFIRMATION = 'confirmation'
 
 export default function Form(props) {
   const [weight, setWeight] = useState(null)
@@ -10,12 +41,13 @@ export default function Form(props) {
   const [textAlerts, setTextAlerts] = useState(false)
   const [textStart, setTextStart] = useState(null)
   const [textEnd, setTextEnd] = useState(null)
-  const [status, setStatus] = useState('weight')
+  const [status, setStatus] = useState(WEIGHT)
   const {setUser} = useContext(UserContext)
+
+  const profile = {weight, activity, phone, textAlerts, textStart, textEnd}
 
   const handleSubmit = async (event) => {
     event.preventDefault()
-    const profile = {weight, activity, phone, textAlerts, textStart, textEnd}
     console.log(profile)
     // const updatedUser = await Axios.put('/api/users', profile)
     // setUser(updatedUser)
@@ -24,20 +56,59 @@ export default function Form(props) {
 
   return (
     <div id="form">
-      {status === 'weight' && (
-        <Weight setWeight={setWeight} setStatus={setStatus} />
+      {status === WEIGHT && (
+        <Input
+          setStatus={() => setStatus(ACTIVITY)}
+          label={WEIGHT_LABEL}
+          placeholder={WEIGHT_PLACEHOLDER}
+          onChange={(event) => setWeight(event.target.value)}
+        />
       )}
-      {status === 'activity' && (
-        <Activity setActivity={setActivity} setStatus={setStatus} />
+      {status === ACTIVITY && (
+        <Input
+          setStatus={() => setStatus(TEXTALERTS)}
+          label={ACTIVITY_LABEL}
+          placeholder={ACTIVITY_PLACEHOLDER}
+          onChange={(event) => setActivity(event.target.value)}
+        />
       )}
-      {status === 'texts' && (
+      {status === TEXTALERTS && (
         <Texts
-          setPhone={setPhone}
+          setStatus={() => setStatus(PHONE)}
           setTextAlerts={setTextAlerts}
-          setTextStart={setTextStart}
-          setTextEnd={setTextEnd}
           handleSubmit={handleSubmit}
         />
+      )}
+      {status === PHONE && (
+        <Input
+          setStatus={() => setStatus(TEXTSTART)}
+          label={PHONE_LABEL}
+          placeholder={PHONE_PLACEHOLDER}
+          onChange={(event) => setPhone(event.target.value)}
+        />
+      )}
+      {status === TEXTSTART && (
+        <TimeSelect
+          label={TEXTSTART_LABEL}
+          handleSubmit={(event, time) => {
+            event.preventDefault()
+            setTextStart(time)
+            setStatus(TEXTEND)
+          }}
+        />
+      )}
+      {status === TEXTEND && (
+        <TimeSelect
+          label={TEXTEND_LABEL}
+          handleSubmit={(event, time) => {
+            event.preventDefault()
+            setTextEnd(time)
+            setStatus(CONFIRMATION)
+          }}
+        />
+      )}
+      {status === CONFIRMATION && (
+        <Confirmation profile={profile} handleSubmit={handleSubmit} />
       )}
     </div>
   )

@@ -22,30 +22,42 @@ export default function TimeSelect(props) {
 
   const handleChange = (event, localStateCallback) => {
     localStateCallback(event.target.value)
-    const time = `${hour}:${minute}:${meridiem}`
-    props.setTime(time)
   }
+
+  let time = `${hour}:${minute} ${meridiem}`
 
   return (
     <div>
-      <select onChange={(event) => handleChange(event, setHour)}>
-        {hours.map((element) => (
-          <option key={element} value={element}>
-            {element}
-          </option>
-        ))}
-      </select>
-      <select onChange={(event) => handleChange(event, setMinute)}>
-        {minutes.map((element) => (
-          <option key={element} value={element}>
-            {element}
-          </option>
-        ))}
-      </select>
-      <select onChange={(event) => handleChange(event, setMeridiem)}>
-        <option value="AM">AM</option>
-        <option value="PM">PM</option>
-      </select>
+      <form
+        onSubmit={(event) => {
+          props.handleSubmit(event, time)
+        }}
+      >
+        <label>
+          {props.label}
+          <select onChange={(event) => handleChange(event, setHour)}>
+            {hours.map((element) => (
+              <option key={element} value={element}>
+                {element}
+              </option>
+            ))}
+          </select>
+          <select onChange={(event) => handleChange(event, setMinute)}>
+            {minutes.map((element) => (
+              <option key={element} value={element}>
+                {element}
+              </option>
+            ))}
+          </select>
+          <select onChange={(event) => handleChange(event, setMeridiem)}>
+            <option value="AM">AM</option>
+            <option value="PM">PM</option>
+          </select>
+        </label>
+        <button type="submit" value="Submit">
+          Next
+        </button>
+      </form>
     </div>
   )
 }
