@@ -22,31 +22,23 @@ function HydrationTracker() {
   }
 
   return (
-    <>
-      <div>Hydration Tracker</div>
-      <div>
-        <div>Today's hydration goal:</div>
-        <div>{user.waterTotal} oz.</div>
-      </div>
-      <div>
-        <div>Your current total:</div>
-        <div>{today.water} oz.</div>
-      </div>
-      <div>
-        <div>Amount left to drink:</div>
-        <div>{user.waterTotal - today.water} oz.</div>
-      </div>
-      <div id="tracker">
-        {increments.map((increment) => {
-          return (
-            <div key={increment} className="tracker-section">
-              {increment}
-            </div>
-          )
-        })}
+    <div id="tracker">
+      <div id="tracker-column-left">
+        <div>
+          <div>Today's hydration goal:</div>
+          <div>{user.waterTotal} oz.</div>
+        </div>
+        <div>
+          <div>Your current total:</div>
+          <div>{today.water} oz.</div>
+        </div>
+        <div>
+          <div>Amount left to drink:</div>
+          <div>{user.waterTotal - today.water} oz.</div>
+        </div>
       </div>
       <div onClick={() => addWater(8)}>Add water</div>
-    </>
+    </div>
   )
 }
 

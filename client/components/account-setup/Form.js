@@ -1,13 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {
-  Activity,
-  Weight,
-  Texts,
-  Phone,
-  TimeSelect,
-  Input,
-  Confirmation,
-} from '.'
+import {Texts, TimeSelect, Input, Confirmation} from '.'
 import Axios from 'axios'
 import {UserContext} from '../../context/user'
 
