@@ -1,4 +1,4 @@
 export const calculateWaterIncrements = (waterTotal) => {
   const fifth = Math.ceil(waterTotal / 5)
-  return [fifth, fifth * 2, fifth * 3, fifth * 4, waterTotal]
+  return [waterTotal, fifth * 4, fifth * 3, fifth * 2, fifth]
 }

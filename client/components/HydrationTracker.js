@@ -7,7 +7,7 @@ function HydrationTracker() {
   const {user} = useContext(UserContext)
   const [today, setToday] = useState({})
   const increments = calculateWaterIncrements(user.waterTotal)
-
+  console.log(increments)
   useEffect(() => {
     const fetchToday = async () => {
       const {data} = await Axios.get('/api/days/today')
@@ -26,15 +26,24 @@ function HydrationTracker() {
       <div>Hydration Tracker</div>
       <div>
         <div>Today's hydration goal:</div>
-        <div>{user.waterTotal} ounces</div>
+        <div>{user.waterTotal} oz.</div>
       </div>
       <div>
         <div>Your current total:</div>
-        <div>{today.water} ounces</div>
+        <div>{today.water} oz.</div>
       </div>
       <div>
         <div>Amount left to drink:</div>
-        <div>{user.waterTotal - today.water} ounces</div>
+        <div>{user.waterTotal - today.water} oz.</div>
+      </div>
+      <div id="tracker">
+        {increments.map((increment) => {
+          return (
+            <div key={increment} className="tracker-section">
+              {increment}
+            </div>
+          )
+        })}
       </div>
       <div onClick={() => addWater(8)}>Add water</div>
     </>
