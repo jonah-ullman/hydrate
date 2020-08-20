@@ -11,9 +11,7 @@ function Routes() {
   return (
     <Router>
       <Switch>
-        {loggedIn && hasProfile && (
-          <Route path="/hydrate" component={HydrationTracker} />
-        )}
+        {loggedIn && hasProfile && <Route component={HydrationTracker} />}
         {loggedIn && !hasProfile && <Route component={Form} />}
         <Route component={Homepage} />
       </Switch>
