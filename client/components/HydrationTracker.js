@@ -25,18 +25,25 @@ function HydrationTracker() {
   return (
     <div id="tracker">
       <div id="tracker-column-left">
-        <div>
-          <div>Today's hydration goal:</div>
-          <div>{user.waterTotal} oz.</div>
-        </div>
-        <div>
-          <div>Your current total:</div>
-          <div>{today.water} oz.</div>
-        </div>
-        <div>
-          <div>Amount left to drink:</div>
-          <div>{user.waterTotal - today.water} oz.</div>
-        </div>
+        <ul>
+          <li>
+            <h2>Goal</h2>
+            <p>{user.waterTotal} oz.</p>
+          </li>
+          <li>
+            <h2>Current</h2>
+            <p>{today.water} oz.</p>
+          </li>
+          <li>
+            <h2>Left</h2>
+            <p>
+              {user.waterTotal <= today.water
+                ? 0
+                : user.waterTotal - today.water}{' '}
+              oz.
+            </p>
+          </li>
+        </ul>
       </div>
       <div id="tracker-column-mid">
         <div id="cup">
@@ -44,7 +51,18 @@ function HydrationTracker() {
         </div>
       </div>
       <div id="tracker-column-right">
-        <div onClick={() => addWater(8)}>Add water</div>
+        <button className="add-water" type="button" onClick={() => addWater(8)}>
+          <h2>Add Water</h2>
+          <p>8 oz.</p>
+        </button>
+        <button
+          className="add-water"
+          type="button"
+          onClick={() => addWater(16)}
+        >
+          <h2>Add Water</h2>
+          <p>16 oz.</p>
+        </button>
       </div>
     </div>
   )
