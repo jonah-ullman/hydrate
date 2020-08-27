@@ -63,6 +63,14 @@ function HydrationTracker() {
           <h2>Add Water</h2>
           <p>16 oz.</p>
         </button>
+        <button
+          className="add-water"
+          type="button"
+          onClick={() => addWater(-8)}
+        >
+          <h2>Remove Water</h2>
+          <p>8 oz.</p>
+        </button>
       </div>
     </div>
   )
