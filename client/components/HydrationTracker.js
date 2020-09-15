@@ -24,51 +24,32 @@ function HydrationTracker() {
 
   return (
     <div id="tracker">
-      <div id="tracker-column-left">
-        <ul>
-          <li>
-            <h2>Goal</h2>
-            <p>{user.waterTotal} oz.</p>
-          </li>
-          <li>
-            <h2>Current</h2>
-            <p>{today.water} oz.</p>
-          </li>
-          <li>
-            <h2>Left</h2>
-            <p>
-              {user.waterTotal <= today.water
-                ? 0
-                : user.waterTotal - today.water}{' '}
-              oz.
-            </p>
-          </li>
-        </ul>
+      <div id="daily-goal">
+        <h2>{`Daily Goal: ${user.waterTotal}oz`}</h2>
       </div>
       <div id="tracker-column-mid">
         <div id="cup">
           <div id="water" style={{height: `${percent}%`}}></div>
+          <div id="water-label">{`${today.water}oz | ${Math.round(
+            percent
+          )}%`}</div>
         </div>
       </div>
-      <div id="tracker-column-right">
-        <button className="add-water" type="button" onClick={() => addWater(8)}>
-          <h2>Add Water</h2>
+      <div id="buttons-container">
+        <button className="button" type="button" onClick={() => addWater(8)}>
+          <h2>Add</h2>
           <p>8 oz.</p>
         </button>
-        <button
-          className="add-water"
-          type="button"
-          onClick={() => addWater(16)}
-        >
-          <h2>Add Water</h2>
+        <button className="button" type="button" onClick={() => addWater(16)}>
+          <h2>Add</h2>
           <p>16 oz.</p>
         </button>
-        <button
-          className="add-water"
-          type="button"
-          onClick={() => addWater(-8)}
-        >
-          <h2>Remove Water</h2>
+        <button className="button" type="button" onClick={() => addWater(16)}>
+          <h2>Add</h2>
+          <p>16 oz.</p>
+        </button>
+        <button className="button" type="button" onClick={() => addWater(-8)}>
+          <h2>Remove</h2>
           <p>8 oz.</p>
         </button>
       </div>
