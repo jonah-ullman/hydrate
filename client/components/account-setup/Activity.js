@@ -3,7 +3,7 @@ import React from 'react'
 export default function Activity(props) {
   const handleSubmit = (event) => {
     event.preventDefault()
-    props.setStatus('texts')
+    props.setStatus()
   }
 
   return (

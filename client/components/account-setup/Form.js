@@ -1,5 +1,5 @@
 import React, {useState, useContext} from 'react'
-import {Texts, TimeSelect, Input, Confirmation} from '.'
+import {Input, Confirmation} from '.'
 import Axios from 'axios'
 import {UserContext} from '../../context/user'
 
@@ -12,37 +12,17 @@ const ACTIVITY_PLACEHOLDER = '#'
 const ACTIVITY_LABEL =
   'How much do you exercise per day on average, in minutes?'
 
-const PHONE = 'phone'
-const PHONE_PLACEHOLDER = 'xxx-xxx-xxxx'
-const PHONE_LABEL = 'Enter your phone number:'
-
-const TEXTALERTS = 'textAlerts'
-
-const TEXTSTART = 'textStart'
-const TEXTSTART_LABEL = 'When would you like to start receiving texts?'
-
-const TEXTEND = 'textEnd'
-const TEXTEND_LABEL = 'When would you like to stop receiving texts?'
-
 const CONFIRMATION = 'confirmation'
 
 export default function Form(props) {
   const [weight, setWeight] = useState(null)
   const [activity, setActivity] = useState(null)
-  const [phone, setPhone] = useState(null)
-  const [textAlerts, setTextAlerts] = useState(false)
-  const [textStart, setTextStart] = useState(null)
-  const [textEnd, setTextEnd] = useState(null)
   const [status, setStatus] = useState(WEIGHT)
   const {setUser} = useContext(UserContext)
 
   const profile = {
     weight,
     activity,
-    phone,
-    textAlerts,
-    textStart,
-    textEnd,
     hasProfile: true,
   }
 
@@ -66,45 +46,10 @@ export default function Form(props) {
       )}
       {status === ACTIVITY && (
         <Input
-          setStatus={() => setStatus(TEXTALERTS)}
+          setStatus={() => setStatus(CONFIRMATION)}
           label={ACTIVITY_LABEL}
           placeholder={ACTIVITY_PLACEHOLDER}
           onChange={(event) => setActivity(event.target.value)}
-        />
-      )}
-      {status === TEXTALERTS && (
-        <Texts
-          setStatus={() => setStatus(PHONE)}
-          setTextAlerts={setTextAlerts}
-          handleSubmit={handleSubmit}
-        />
-      )}
-      {status === PHONE && (
-        <Input
-          setStatus={() => setStatus(TEXTSTART)}
-          label={PHONE_LABEL}
-          placeholder={PHONE_PLACEHOLDER}
-          onChange={(event) => setPhone(event.target.value)}
-        />
-      )}
-      {status === TEXTSTART && (
-        <TimeSelect
-          label={TEXTSTART_LABEL}
-          handleSubmit={(event, time) => {
-            event.preventDefault()
-            setTextStart(time)
-            setStatus(TEXTEND)
-          }}
-        />
-      )}
-      {status === TEXTEND && (
-        <TimeSelect
-          label={TEXTEND_LABEL}
-          handleSubmit={(event, time) => {
-            event.preventDefault()
-            setTextEnd(time)
-            setStatus(CONFIRMATION)
-          }}
         />
       )}
       {status === CONFIRMATION && (

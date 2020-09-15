@@ -2,7 +2,7 @@ import React from 'react'
 
 export default function Confirmation(props) {
   const {handleSubmit, profile} = props
-  const {weight, activity, phone, textStart, textEnd} = profile
+  const {weight, activity} = profile
   return (
     <div>
       <div>
@@ -10,9 +10,6 @@ export default function Confirmation(props) {
       </div>
       <div>Weight: {weight}</div>
       <div>Activity per day: {activity} minutes</div>
-      <div>Phone Number: {phone}</div>
-      <div>I want to receive text alerts starting at: {textStart}</div>
-      <div>I want to stop receiving text alerts starting at: {textEnd}</div>
       <div onClick={handleSubmit}>Yup, let's hydrate!</div>
     </div>
   )
